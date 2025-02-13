@@ -18,7 +18,12 @@ const AllPostsPage = () => {
           throw new Error("Failed to fetch posts");
         }
         const data = await response.json();
-        setPostsList(data.posts);
+
+        setPostsList(
+          [...data.posts].sort((a, b) => {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+          })
+        );
       } catch (error) {
         setError(error.message);
       } finally {
@@ -39,8 +44,8 @@ const AllPostsPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 bg-slate-200">
-      <h1 className="text-3xl font-bold text-center mb-8 text-gray-900">
-        All Posts
+      <h1 className="text-3xl font-bold text-center mb-8 text-gray-900 underline">
+        All Posts - {postsList.length} Posts
       </h1>
       <ul className="space-y-6">
         {postsList?.map((post, index) => (

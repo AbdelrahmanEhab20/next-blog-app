@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useRouter } from "next/navigation";
 
 const AddNewPost = () => {
+  const router = useRouter();
   const [submitError, setSubmitError] = useState(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
@@ -45,9 +47,9 @@ const AddNewPost = () => {
         setSubmitSuccess(true);
         resetForm(); // Reset the form after successful submission
         setSubmitError(null); // Clear any previous errors
-        console.log("Post created:", result.post);
+
+        router.push("/posts"); // Redirect to posts page
       } catch (error) {
-        console.error("Error:", error);
         setSubmitError(error.message);
         setSubmitSuccess(false); // Ensure success message is cleared on error
       } finally {

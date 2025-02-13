@@ -18,10 +18,12 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           {/* Logo/Brand Name */}
-          <div className="flex gap-2">
-            <AiOutlineCustomerService size={24} />
-            <h1 className="text-xl font-semibold">Blog Next</h1>
-          </div>
+          <Link href="/">
+            <div className="flex gap-2">
+              <AiOutlineCustomerService size={24} />
+              <h1 className="text-xl font-semibold">Blog Next</h1>
+            </div>
+          </Link>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
